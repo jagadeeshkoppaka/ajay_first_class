@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:onlineflutterclass/SecondVc.dart';
+import 'package:onlineflutterclass/ThirdVC.dart';
+
+import 'SecondVc.dart';
 
 
 void main() {

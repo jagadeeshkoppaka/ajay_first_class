@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlineflutterclass/ThirdVC.dart';
 
 class SecondVC extends StatefulWidget {
   const SecondVC({Key? key}) : super(key: key);
@@ -8,6 +9,10 @@ class SecondVC extends StatefulWidget {
 }
 
 class _SecondVCState extends State<SecondVC> {
+  TextEditingController emailTxt = TextEditingController();
+  TextEditingController passwordTxt = TextEditingController();
+  String passwordValue = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +72,7 @@ class _SecondVCState extends State<SecondVC> {
                           padding: const EdgeInsets.only(
                               top: 0, bottom: 10, left: 10, right: 10),
                           child: TextField(
+                            controller: emailTxt,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Enter your Email",
@@ -110,6 +116,7 @@ class _SecondVCState extends State<SecondVC> {
                           padding: const EdgeInsets.only(
                               top: 0, bottom: 10, left: 10, right: 10),
                           child: TextField(
+                            controller: passwordTxt,
                             decoration: InputDecoration(
                                 hintText: "Enter your Password",
                                 hintStyle: TextStyle(fontSize: 12),
@@ -158,16 +165,30 @@ class _SecondVCState extends State<SecondVC> {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 50,
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(fontSize: 18, color: Colors.black),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        passwordValue = passwordTxt.text;
+                      });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ThirdVC(
+                                    passwordData: passwordTxt.text,
+                                    emailData: emailTxt.text,
+                                  )));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width - 50,
+                      height: 55,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
                       ),
                     ),
                   ),
@@ -197,8 +218,8 @@ class _SecondVCState extends State<SecondVC> {
                     Container(
                       height: 60,
                       width: 60,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(60)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(60)),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(60),
                         child: Image.asset(
@@ -213,8 +234,8 @@ class _SecondVCState extends State<SecondVC> {
                     Container(
                       height: 60,
                       width: 60,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(60)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(60)),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(60),
                         child: Image.asset(
