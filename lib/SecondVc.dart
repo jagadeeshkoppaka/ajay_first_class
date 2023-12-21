@@ -166,17 +166,28 @@ class _SecondVCState extends State<SecondVC> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       setState(() {
                         passwordValue = passwordTxt.text;
                       });
-                      Navigator.push(
+
+                      final result = await Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ThirdVC(
                                     passwordData: passwordTxt.text,
                                     emailData: emailTxt.text,
                                   )));
+
+                      if (result != null) {
+                        setState(() {
+                          emailTxt.text = result[0];
+                          passwordTxt.text = result[1];
+                          print("valuefromthird${emailTxt.text}");
+                        });
+                      } else {
+                        print("object");
+                      }
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width - 50,

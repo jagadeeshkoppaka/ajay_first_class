@@ -13,6 +13,9 @@ class _ThirdVCState extends State<ThirdVC> {
   bool rememberMeTapped = false;
   TextEditingController emailStr = TextEditingController();
   TextEditingController passStr = TextEditingController();
+
+  var list = [];
+
   @override
   void initState() {
     super.initState();
@@ -174,8 +177,13 @@ class _ThirdVCState extends State<ThirdVC> {
                       padding: const EdgeInsets.only(top: 20),
                       child: GestureDetector(
                         onTap: () {
+                          setState(() {
+                            list = [emailStr.text, passStr.text];
+                            // list.add(emailStr.text);
+                            // list.add(passStr.text);
+                          });
                           print("Login Tapped");
-                          Navigator.pop(context);
+                          Navigator.pop(context, list);
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width - 30,
